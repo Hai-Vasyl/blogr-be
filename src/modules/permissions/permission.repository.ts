@@ -7,10 +7,12 @@ import { Permission } from '@modules/permissions/permission.entity';
 import { BaseRepository } from '@common/repositories';
 import { Permissions } from '@common/enums';
 import { ProvideManager } from '@common/decorators/api';
+import { User } from '@modules/users/user.entity';
 
 type CreatePermissionDTO = {
   name: Permissions;
   description: string;
+  creator: User;
 };
 
 @Injectable()
@@ -24,10 +26,10 @@ export class PermissionRepository extends BaseRepository<Permission> {
 
   @ProvideManager()
   @ErrorProcessable()
-  public async createPermissions(
-    createPermissionsDTO: CreatePermissionDTO[],
+  public async createPermission(
+    createPermissionDTO: CreatePermissionDTO,
     manager?: EntityManager,
-  ): Promise<Permission[]> {
-    return await manager.save(this.target, createPermissionsDTO);
+  ): Promise<Permission> {
+    return await manager.save(this.target, createPermissionDTO);
   }
 }

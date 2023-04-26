@@ -11,3 +11,4 @@ export * from '@common/decorators/validation/is-optional.decorator';
 export * from '@common/decorators/validation/is-uuid.decorator';
 export * from '@common/decorators/validation/is-email.decorator';
 export * from '@common/decorators/validation/is-not-empty.decorator';
+export * from '@common/decorators/validation/is-number-string.decorator';

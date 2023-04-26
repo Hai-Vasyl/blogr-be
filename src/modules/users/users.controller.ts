@@ -47,7 +47,7 @@ export class UsersController {
   // }
 
   @Get(':userId')
-  @SetPermission(Permissions.VIEW_USER_DETAILS)
+  @SetPermission(Permissions.VIEW_USER)
   @HttpCode(HttpStatus.OK)
   public async getUser(@Param() { userId }: GetUserParamDTO): Promise<User> {
     return this.usersService.getUser(userId);

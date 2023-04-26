@@ -29,7 +29,7 @@ class SetAuthUserDataMiddleware implements NestMiddleware {
     try {
       return await this.authService.verifyJwtToken(token);
     } catch (error) {
-      throw new UnauthorizedException({
+      throw new ForbiddenException({
         message: error.message,
         code: ErrorCodes.AUTH_MIDDLEWARE_TOKEN_IS_EXPIRED_OR_WRONG_20001,
       });
@@ -57,6 +57,13 @@ class SetAuthUserDataMiddleware implements NestMiddleware {
       where: { userId },
       relations: ['role', 'role.permissions'],
     });
+
+    if (!user) {
+      throw new ForbiddenException({
+        message: 'User does not exist with Id specified in access token',
+        code: ErrorCodes.AUTH_MIDDLEWARE_TOKEN_SUB_IS_INVALID_30055,
+      });
+    }
 
     req.isAuth = true;
     req.user = user;

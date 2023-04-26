@@ -4,6 +4,7 @@ export enum ContextCodes {
 
   // permissions
   POST_PERMISSIONS = 101,
+  VIEW_PERMISSIONS = 106,
 
   // roles
   POST_ROLE = 102,

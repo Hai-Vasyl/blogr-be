@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module, forwardRef } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { PermissionsModule } from '@modules/permissions/permissions.module';
@@ -10,7 +10,10 @@ import { DoesRoleAlreadyExistWithNameConstraint } from '@modules/roles/validatio
 import { DoesRoleExistWithIdConstraint } from '@modules/roles/validation/does-role-exist-with-id';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Role]), PermissionsModule],
+  imports: [
+    TypeOrmModule.forFeature([Role]),
+    forwardRef(() => PermissionsModule),
+  ],
   controllers: [RolesController],
   providers: [
     RolesService,

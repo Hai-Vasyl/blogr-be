@@ -7,7 +7,7 @@ import { RequestMethod } from '@nestjs/common/enums';
 @Injectable()
 class SetContextCodeViewPermissionsMiddleware extends SetContextCodeMiddleware {
   public constructor() {
-    super(ContextCodes.POST_PERMISSIONS);
+    super(ContextCodes.VIEW_PERMISSIONS);
   }
 }
 
